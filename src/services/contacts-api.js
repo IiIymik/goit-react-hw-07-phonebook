@@ -7,3 +7,9 @@ export async function fetchContacts() {
   console.log(data);
   return data;
 }
+
+axios.post('/contact', {
+  id: 'id-6',
+  name: 'vlad Simpson',
+  number: '2323-12-56',
+});
