@@ -1,29 +1,34 @@
-// import { useState, useEffect } from 'react';
+import { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import Form from '../Form/Form';
 import { Container, TitleMain, TitleBook, } from './App.styled.js'
 import ContactsList from '../ContactsList/ContactsList';
 import Filter from '../Filter/Filter';
 import * as actions from 'redux/contacts/contacts-actions';
+import { getContacts } from 'redux/contacts/contacts-operations';
 
 
 export default function App() {
-  const contacts = useSelector(state => state.contacts.items);
+  // const contacts = useSelector(state => state.contacts.items);
   const filter = useSelector(state => state.contacts.filter);
   const dispatch = useDispatch();
 
-  const getVisibleContacts = () => {
-    const normalizedFilter = filter.toLowerCase();
-    return contacts.filter(contact =>contact.name.toLowerCase().includes(normalizedFilter))
-  }
+  useEffect(() => {
+    dispatch(getContacts())
+  }, [dispatch])
+
+  // const getVisibleContacts = () => {
+  //   const normalizedFilter = filter.toLowerCase();
+  //   return contacts.filter(contact =>contact.name.toLowerCase().includes(normalizedFilter))
+  // }
 
   return (
     <Container>
-      <TitleMain>Phonebook</TitleMain>
+      {/* <TitleMain>Phonebook</TitleMain>
       <Form onSubmit={(obj)=> dispatch(actions.addContact(obj))} data={contacts} />
       <TitleBook>Contacts</TitleBook>
       <Filter onChange={(e) => dispatch(actions.addFilterValue(e.currentTarget.value))} value={filter} />
-      <ContactsList contacts={getVisibleContacts(contacts)} onDeleteContact={(contactId)=>dispatch(actions.deleteContact(contactId))} />
+      <ContactsList contacts={getVisibleContacts(contacts)} onDeleteContact={(contactId)=>dispatch(actions.deleteContact(contactId))} /> */}
     </Container>
   )
 }
