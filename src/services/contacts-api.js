@@ -8,8 +8,8 @@ export async function fetchContacts() {
   return data;
 }
 
-axios.post('/contact', {
-  id: 'id-6',
-  name: 'vlad Simpson',
-  number: '2323-12-56',
-});
+// axios.post('/contact', {
+//   id: 'id-6',
+//   name: 'vlad Simpson',
+//   number: '2323-12-56',
+// });
