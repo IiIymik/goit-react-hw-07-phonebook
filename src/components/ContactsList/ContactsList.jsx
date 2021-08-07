@@ -1,12 +1,19 @@
 import React from 'react';
-import { List, Item, ButtonDel } from './ContactsList.styled.js'
+import { useSelector } from 'react-redux';
+import { List, Item, ButtonDel } from './ContactsList.styled.js';
+import { deleteContact } from 'redux/contacts/contacts-operations';
+import { getAllContacts } from 'redux/contacts/contacts-selectors';
+import { useDispatch } from 'react-redux';
 
-const ContactsList = ({ contacts, onDeleteContact }) => {
+const ContactsList = () => {
+  const contacts = useSelector(getAllContacts);
+  const dispatch = useDispatch();
+
     return (
         <List>
-            {contacts.map(({ id, name, number }) => (
+            {contacts.length > 0 && contacts.map(({ id, name, number }) => (
                 <Item key={id} >{name}: {number}
-                    <ButtonDel type="button" onClick={() => onDeleteContact(id)}>Delete</ButtonDel>
+                    <ButtonDel type="button" onClick={()=>dispatch(deleteContact(id))}>Delete</ButtonDel>
                 </Item>
             ))}
         </List>

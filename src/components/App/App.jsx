@@ -5,30 +5,25 @@ import { Container, TitleMain, TitleBook, } from './App.styled.js'
 import ContactsList from '../ContactsList/ContactsList';
 import Filter from '../Filter/Filter';
 import * as actions from 'redux/contacts/contacts-actions';
-import { getContacts } from 'redux/contacts/contacts-operations';
+import { getContacts, addContact} from 'redux/contacts/contacts-operations';
+import { getFilter, getVisibleContacts } from 'redux/contacts/contacts-selectors';
 
 
 export default function App() {
-  const contacts = useSelector(state => state.contacts.entities);
-  const filter = useSelector(state => state.contacts.filter);
+  const filter = useSelector(getFilter);
   const dispatch = useDispatch();
 
   useEffect(() => {
     dispatch(getContacts())
   }, [dispatch])
 
-  const getVisibleContacts = () => {
-    const normalizedFilter = filter.toLowerCase();
-    return contacts.filter(contact =>contact.name.toLowerCase().includes(normalizedFilter))
-  }
-
   return (
     <Container>
       <TitleMain>Phonebook</TitleMain>
-      <Form onSubmit={(obj)=> dispatch(actions.addContact(obj))} data={contacts} />
-      <TitleBook>Contacts</TitleBook>
-      <Filter onChange={(e) => dispatch(actions.addFilterValue(e.currentTarget.value))} value={filter} />
-      <ContactsList contacts={getVisibleContacts(contacts)} onDeleteContact={(contactId)=>dispatch(actions.deleteContact(contactId))} />
+      {/* <Form onSubmit={(obj)=> addContact(obj)} data={contacts} /> */}
+      {/* <TitleBook>Contacts</TitleBook> */}
+      {/* <Filter onChange={(e) => dispatch(actions.changeFilterValue(e.currentTarget.value))} value={filter} /> */}
+      <ContactsList />
     </Container>
   )
 }
