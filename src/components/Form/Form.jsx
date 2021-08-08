@@ -1,8 +1,13 @@
 import { useState } from 'react';
+import { useSelector, useDispatch } from 'react-redux';
+import { addContact } from 'redux/contacts/contacts-operations';
+import {getVisibleContacts} from 'redux/contacts/contacts-selectors';
 import nanoid from '../../utils/nanoid.js';
 import { FormEl, Input, TitleInput, Button, } from './Form.styled.js';
 
-export default function Form({ data, onSubmit }) {
+export default function Form() {
+  const dispatch = useDispatch();
+  const data = useSelector(getVisibleContacts)
   const [name, setName] = useState('');
   const [number, setNumber] = useState('');
 
@@ -20,7 +25,7 @@ export default function Form({ data, onSubmit }) {
       alert(`${compare.name} is already in contacts`)
       return reset();
     }
-    onSubmit(obj);
+    dispatch(addContact(obj));
     reset();
   }
 

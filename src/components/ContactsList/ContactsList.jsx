@@ -2,11 +2,11 @@ import React from 'react';
 import { useSelector } from 'react-redux';
 import { List, Item, ButtonDel } from './ContactsList.styled.js';
 import { deleteContact } from 'redux/contacts/contacts-operations';
-import { getAllContacts } from 'redux/contacts/contacts-selectors';
+import { getVisibleContacts } from 'redux/contacts/contacts-selectors';
 import { useDispatch } from 'react-redux';
 
 const ContactsList = () => {
-  const contacts = useSelector(getAllContacts);
+  const contacts = useSelector(getVisibleContacts);
   const dispatch = useDispatch();
 
     return (

@@ -22,11 +22,3 @@ export const deleteContactSuccess = createAction(
 export const deleteContactError = createAction('contacts/deleteContactError');
 //Add Filter value
 export const changeFilterValue = createAction('contacts/changeFilterValue');
-
-// export const toggleCompletedRequest = createAction(
-//   'todos/toggleCompletedRequest',
-// );
-// export const toggleCompletedSuccess = createAction(
-//   'todos/toggleCompletedSuccess',
-// );
-// export const toggleCompletedError = createAction('todos/toggleCompletedError');
